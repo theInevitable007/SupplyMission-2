@@ -5,6 +5,9 @@ const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
 
+var zone1,zone2,zone3;
+
+
 function preload()
 {
 	helicopterIMG=loadImage("helicopter.png")
@@ -30,11 +33,16 @@ function setup() {
 	engine = Engine.create();
 	world = engine.world;
 
-	packageBody = Bodies.circle(width/2 , 200 , 5 , {restitution:1.5, isStatic:true});
+	packageBody = Bodies.circle(width/2 , 200 , 5 , {restitution:0.8, isStatic:true});
 	World.add(world, packageBody);
 	
 	ground = Bodies.rectangle(width/2, 650, width, 10 , {isStatic:true} );
- 	World.add(world, ground);
+	 World.add(world, ground);
+	 
+	 zone1 = new Zone(400,665,200,10);
+	 zone2 = new Zone(300,635,10,70);
+	 zone3 = new Zone(500,635,10,70);
+
 
 	Engine.run(engine);
   
@@ -46,6 +54,10 @@ function draw() {
   packageSprite.x= packageBody.position.x 
   packageSprite.y= packageBody.position.y 
   drawSprites();
+
+  zone1.display();
+  zone2.display();
+  zone3.display();
  
 }
 
